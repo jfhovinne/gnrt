@@ -27,15 +27,14 @@ for path in Path('content').rglob('*.md'):
     metadata['link'] = str(path).replace('content/', '/').replace('.md', '.html')
     if 'id' not in metadata:
         metadata['id'] = metadata['link']
-    if 'category' in metadata:
-        if not metadata['category'] in dataset:
-            dataset[metadata['category']] = {}
-        dataset[metadata['category']][metadata['id']] = metadata
+    dataset[metadata['id']] = metadata
 
 # Generate includes (lists) from dataset
 for key, value in config['lists'].items():
     template = env.get_template(value['template'])
-    items = dataset[value['category']].items()
+    items = dataset.items()
+    if 'filter' in value:
+        items = {k: v for (k, v) in dataset.items() if v[value['filter']['key']] == value['filter']['value']}.items()
     if 'sort' in value:
         items = sorted(items, key=lambda x: x[1][value['sort']], reverse=value['reverse'])
     if 'limit' in value:
