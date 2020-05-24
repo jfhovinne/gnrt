@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import frontmatter
 import itertools
@@ -21,7 +21,8 @@ for path in Path('content').rglob('*.md'):
     item = frontmatter.load(path.resolve())
     metadata = {**defaults, **item.metadata}
     metadata['source'] = str(path)
-    metadata['target'] = str(path).replace('content/', 'public/').replace('.md', '.html')
+    if 'target' not in metadata:
+        metadata['target'] = str(path).replace('content/', 'public/').replace('.md', '.html')
     metadata['link'] = metadata['target'].replace('public/', '/')
     metadata['content'] = item.content
 
@@ -42,7 +43,12 @@ for key, value in config['lists'].items():
     if 'limit' in value:
         items = dict(itertools.islice(items, value['limit'])).items()
     render = template.render(list=value, items=items, config=config, data=dataset)
-    Path('includes/' + key + '.html').write_text(render)
+    if 'target' in value:
+        Path(value['target']).write_text(render)
+    else:
+        Path('includes/' + key + '.html').write_text(render)
+
+print("Generated %d includes" % len(config['lists']))
 
 # Second iteration: render and write items
 for key, item in dataset.items():
@@ -66,3 +72,5 @@ for key, item in dataset.items():
     out = Path(item['target'])
     Path(out.parent).mkdir(parents=True, exist_ok=True)
     out.write_text(render)
+
+print("Generated %d targets" % len(dataset))
