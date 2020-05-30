@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-import frontmatter
+from pathlib import Path
 import itertools
+import frontmatter
 import markdown2
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
-from pathlib import Path
 
 with open('config.yml', 'r') as yml:
     config = yaml.load(yml, Loader=yaml.SafeLoader)
@@ -23,13 +23,13 @@ for path in Path('content').rglob('*.md'):
     metadata['source'] = str(path)
     if 'target' not in metadata:
         metadata['target'] = str(path).replace('content/', 'public/').replace('.md', '.html')
-    metadata['link'] = metadata['target'].replace('public/', '/')
-    metadata['content'] = item.content
-
+    if 'link' not in metadata:
+        metadata['link'] = metadata['target'].replace('public/', '/')
     if 'id' not in metadata:
         metadata['id'] = metadata['link']
     if 'title' not in metadata:
         metadata['title'] = path.stem
+    metadata['content'] = item.content
     dataset[metadata['id']] = metadata
 
 # Generate includes (lists) from dataset
