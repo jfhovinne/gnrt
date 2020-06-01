@@ -76,12 +76,16 @@ def generate_items(config, env, dataset):
         out.write_text(render)
 
 def main():
-    config_file = Path('config.yml')
-    if config_file.is_file():
+    config = {'defaults': {}, 'lists': {}}
+    if Path('config.yml').is_file():
         with open('config.yml', 'r') as yml:
             config = yaml.load(yml, Loader=yaml.SafeLoader)
-    else:
-        config = {'defaults': {}, 'lists': {}}
+            if not type(config) is dict:
+                raise TypeError('Incorrect configuration file')
+    if 'defaults' not in config:
+        config['defaults'] = {}
+    if 'lists' not in config:
+        config['lists'] = {}
     env = Environment(loader=FileSystemLoader('templates'))
     dataset = load_dataset(config)
     generate_lists(config, env, dataset)
