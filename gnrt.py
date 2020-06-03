@@ -44,8 +44,10 @@ def generate_lists(config, env, dataset):
             items = dict(itertools.islice(items, value['limit'])).items()
         render = template.render(list=value, items=items, config=config, data=dataset)
         if 'target' in value:
+            Path(value['target']).parent.mkdir(parents=True, exist_ok=True)
             Path(value['target']).write_text(render)
         else:
+            Path('includes').mkdir(parents=True, exist_ok=True)
             Path('includes/' + key + '.html').write_text(render)
 
 def generate_items(config, env, dataset):
