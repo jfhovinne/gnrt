@@ -17,7 +17,7 @@ Features:
 gnrt.py
 ```
 
-It will look for an optional `config.yml` file in the current directory, optional Jinja2 templates in the `templates` folder, markdown files in the `content` folder, then write the generated output files in the `public` folder.
+It will look for an optional `config.yml` file in the current directory, optional Jinja2 templates in the `templates` folder, markdown files in the `content` folder, then write the generated output files in the `public` folder, while respecting the `content` folder and sub-folders structure.
 
 ## Configuration
 
