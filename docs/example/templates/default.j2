@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} - {{ config.sitename }}</title>
+</head>
+<body>
+<header>
+<h1>{{ config.sitename }}</h1>
+<nav>
+{{ nav }}
+</nav>
+</header>
+<main>
+<article>
+<h1>{{ title }}</h1>
+{{ body }}
+</article>
+</main>
+{% if footer is defined %}
+<footer>
+{{ footer }}
+</footer>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+---
+
+sitename: Example gnrt.py website
+baseurl: https://example.py/
+author: gnrt
+language: en
+
+defaults:
+  template: default.j2
+  category: page
+  nav: includes/nav.html
+
+lists:
+  nav:
+    template: nav.j2
