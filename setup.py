@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='gnrt',
-    version='0.1.0',
+    version='0.1.1',
     author='jfhovinne',
     author_email='gnrt@hovinne.com',
     license='MIT',
@@ -27,4 +27,9 @@ setuptools.setup(
         'python-frontmatter',
         'pyyaml',
     ],
+    entry_points={
+        'console_scripts': [
+            'gnrt=gnrt.gnrt:main',
+        ],
+    },
 )
