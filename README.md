@@ -77,4 +77,4 @@ lists:
 
 ## Example
 
-See the [author's personal website](https://hovinne.com/).
+See the example website in `docs/example`.
