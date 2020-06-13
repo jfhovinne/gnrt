@@ -1,0 +1,6 @@
+<dl>
+{% for key, value in items %}
+  <dt>{{ value.published }}: <a href="{{ value.link }}">{{ value.title }}</a></dt>
+  <dd>{{ value.excerpt }}</dd>
+{% endfor %}
+</dl>

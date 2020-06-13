@@ -3,6 +3,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }} - {{ config.sitename }}</title>
+  <link rel="stylesheet" href="/css/awsm.min.css" type="text/css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ config.baseurl }}/rss.xml" />
 </head>
 <body>
 <header>
@@ -15,6 +17,11 @@
 <article>
 <h1>{{ title }}</h1>
 {{ body }}
+{% if nav2 is defined %}
+<nav>
+{{ nav2 }}
+</nav>
+{% endif %}
 </article>
 </main>
 {% if footer is defined %}

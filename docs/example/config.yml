@@ -1,7 +1,7 @@
 ---
 
 sitename: Example gnrt.py website
-baseurl: https://example.py/
+baseurl: https://example.py
 author: gnrt
 language: en
 
@@ -13,3 +13,30 @@ defaults:
 lists:
   nav:
     template: nav.j2
+    filter:
+      key: category
+      value: page
+    sort: nav-order
+  nav-all-articles:
+    template: nav-article.j2
+    filter:
+      key: category
+      value: article
+    sort: published
+    reverse: true
+  nav-latest-articles:
+    template: nav-article.j2
+    filter:
+      key: category
+      value: article
+    sort: published
+    reverse: true
+    limit: 2
+  rss:
+    filter:
+      key: category
+      value: article
+    sort: published
+    reverse: true
+    template: rss.j2
+    target: public/rss.xml
