@@ -8,6 +8,7 @@ setuptools.setup(
     version='0.1.0',
     author='jfhovinne',
     author_email='gnrt@hovinne.com',
+    license='MIT',
     description='A fast and lightweight static site generator',
     long_description=long_description,
     long_description_content_type='text/markdown',
