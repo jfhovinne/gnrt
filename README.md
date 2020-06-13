@@ -31,17 +31,17 @@ It will look for an optional `config.yml` file in the current directory, optiona
 
 ## Configuration
 
-Configuration is stored in `config.yml`. Any key-value pair is allowed. These keys can be used in the content and template files.
+Configuration is stored in `config.yml`. Any key-value pair is allowed. These keys and their values can be used in the content and template files.
 
 ```
 ---
 sitename: My awesome blog
-baseurl: https://example.com/
+baseurl: https://example.com
 language: en
 foo: bar
 ```
 
-If the `config.yml` file exists, `gnrt.py` will look for the `defaults` and `lists` entries.
+If the `config.yml` file exists, `gnrt` will look for the `defaults` and `lists` entries.
 
 ### Defaults
 
