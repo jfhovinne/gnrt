@@ -39,6 +39,8 @@ def generate_lists(config, env, dataset):
         if 'filter' in value:
             items = {k: v for (k, v) in dataset.items() if v[value['filter']['key']] == value['filter']['value']}.items()
         if 'sort' in value:
+            if 'reverse' not in value:
+                value['reverse'] = False
             items = sorted(items, key=lambda x: x[1][value['sort']], reverse=value['reverse'])
         if 'limit' in value:
             items = dict(itertools.islice(items, value['limit'])).items()
