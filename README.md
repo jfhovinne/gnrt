@@ -21,6 +21,8 @@ Features:
 pip install --upgrade gnrt
 ```
 
+You may need to add `$HOME/.local/bin` to your `$PATH`.
+
 ## Usage
 
 ```
@@ -87,4 +89,6 @@ lists:
 
 ## Example
 
-See the example website in `docs/example`.
+See the example website in `docs/example`, which you can generate by installing `gnrt`, cloning this repository, moving to `gnrt/docs/example` and executing `gnrt`.
+
+You can then browse it at `http://localhost:8080/` for instance by moving to the generated `public` folder and executing `python3 -m http.server 8080`.
