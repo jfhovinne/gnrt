@@ -92,3 +92,5 @@ lists:
 See the example website in `docs/example`, which you can generate by installing `gnrt`, cloning this repository, moving to `gnrt/docs/example` and executing `gnrt`.
 
 You can then browse it at `http://localhost:8080/` for instance by moving to the generated `public` folder and executing `python3 -m http.server 8080`.
+
+You may also want to check a [live gnrt-generated blog](https://hovinne.com/).
