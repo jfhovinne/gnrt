@@ -10,6 +10,19 @@ import markdown2
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
 
+def load_config():
+    config = {'defaults': {}, 'lists': {}}
+    if Path('config.yml').is_file():
+        with open('config.yml', 'r') as yml:
+            config = yaml.load(yml, Loader=yaml.SafeLoader)
+            if not type(config) is dict:
+                raise TypeError('Incorrect configuration file')
+    if 'defaults' not in config:
+        config['defaults'] = {}
+    if 'lists' not in config:
+        config['lists'] = {}
+    return config
+
 def load_dataset(config):
     # First iteration: get items metadata and generate dataset
     dataset = {}
@@ -80,16 +93,7 @@ def generate_items(config, env, dataset):
         out.write_text(render)
 
 def main():
-    config = {'defaults': {}, 'lists': {}}
-    if Path('config.yml').is_file():
-        with open('config.yml', 'r') as yml:
-            config = yaml.load(yml, Loader=yaml.SafeLoader)
-            if not type(config) is dict:
-                raise TypeError('Incorrect configuration file')
-    if 'defaults' not in config:
-        config['defaults'] = {}
-    if 'lists' not in config:
-        config['lists'] = {}
+    config = load_config()
     env = Environment(loader=FileSystemLoader('templates'))
     dataset = load_dataset(config)
     generate_lists(config, env, dataset)
