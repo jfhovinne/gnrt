@@ -1,0 +1,9 @@
+# Dependencies
+jinja2
+markdown2
+python-frontmatter
+pyyaml
+
+# Testing
+flake8
+pytest

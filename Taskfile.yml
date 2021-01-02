@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  build:
+    desc: Build gnrt
+    cmds:
+      - pip install -r requirements.txt
+
+  qa:
+    desc: Execute QA checks
+    cmds:
+      - flake8 --max-line-length=127 gnrt
+
+  test:
+    desc: Execute tests
+    cmds:
+      - python -m pytest
