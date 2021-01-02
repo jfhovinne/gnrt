@@ -10,6 +10,7 @@ import markdown2
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
 
+
 def load_config():
     config = {'defaults': {}, 'lists': {}}
     if Path('config.yml').is_file():
@@ -22,6 +23,7 @@ def load_config():
     if 'lists' not in config:
         config['lists'] = {}
     return config
+
 
 def load_dataset(config):
     # First iteration: get items metadata and generate dataset
@@ -44,6 +46,7 @@ def load_dataset(config):
         dataset[metadata['id']] = metadata
     return dataset
 
+
 def generate_lists(config, env, dataset):
     # Generate includes (lists) from dataset
     for key, value in config['lists'].items():
@@ -64,6 +67,7 @@ def generate_lists(config, env, dataset):
         else:
             Path('includes').mkdir(parents=True, exist_ok=True)
             Path('includes/' + key + '.html').write_text(render)
+
 
 def generate_items(config, env, dataset):
     # Second iteration: render and write items
@@ -92,6 +96,7 @@ def generate_items(config, env, dataset):
         Path(out.parent).mkdir(parents=True, exist_ok=True)
         out.write_text(render)
 
+
 def main():
     config = load_config()
     env = Environment(loader=FileSystemLoader('templates'))
@@ -100,6 +105,7 @@ def main():
     print("Generated %d includes" % len(config['lists']))
     generate_items(config, env, dataset)
     print("Generated %d targets" % len(dataset))
+
 
 if __name__ == '__main__':
     main()
