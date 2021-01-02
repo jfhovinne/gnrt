@@ -1,3 +1,5 @@
+---
+
 name: Test
 
 on: [push, pull_request]
@@ -11,23 +13,26 @@ jobs:
         python-version: [3.6, 3.7, 3.8]
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install Task
-      uses: Arduino/actions/setup-taskfile@master
+      - name: Pip
+        run: python -m pip install --upgrade pip
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        task build
+      - name: Install Task
+        run: |
+          sh -c "$(curl -ssL https://taskfile.dev/install.sh)" -- -d
+          echo "./bin" >> $GITHUB_PATH
 
-    - name: QA
-      run: task qa
+      - name: Build
+        run: task build
 
-    - name: Tests
-      run: task test
+      - name: QA
+        run: task qa
+
+      - name: Test
+        run: task test
