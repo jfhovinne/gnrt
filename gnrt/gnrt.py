@@ -4,9 +4,11 @@ gnrt is a lightweight static site generator.
 """
 
 from pathlib import Path
+import argparse
 import itertools
 import frontmatter
 import markdown2
+import os
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
 
@@ -98,6 +100,10 @@ def generate_items(config, env, dataset):
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Generate static websites from Markdown content and Jinja2 templates.')
+    parser.add_argument('-w', '--working-dir', default=str(Path()), help="The working directory (default: %(default)s)")
+    args = parser.parse_args()
+    os.chdir(Path(args.working_dir).resolve())
     config = load_config()
     env = Environment(loader=FileSystemLoader('templates'))
     dataset = load_dataset(config)

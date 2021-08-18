@@ -29,7 +29,13 @@ You may need to add `$HOME/.local/bin` to your `$PATH`.
 gnrt
 ```
 
-It will look for an optional `config.yml` file in the current directory, optional Jinja2 templates in the `templates` folder, markdown files in the `content` folder, then write the generated output files in the `public` folder, while respecting the `content` folder and sub-folders structure.
+It will look for an optional `config.yml` file in the current working directory, optional Jinja2 templates in the `templates` folder, markdown files in the `content` folder, then write the generated output files in the `public` folder, while respecting the `content` folder and sub-folders structure.
+
+To get a list of options, use:
+
+```
+gnrt -h
+```
 
 ## Configuration
 
