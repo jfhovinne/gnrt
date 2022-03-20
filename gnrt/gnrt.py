@@ -82,7 +82,8 @@ def generate_items(config, env, dataset):
         # Render body
         template = Template(item['content'])
         body = template.render(item, config=config, data=dataset)
-        item['body'] = markdown2.markdown(body)
+        extras = item.get('markdown-extras', config['defaults'].get('markdown-extras', {}))
+        item['body'] = markdown2.markdown(body, extras=extras)
 
         # Render item
         if 'template' in item:
