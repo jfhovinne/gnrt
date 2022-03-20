@@ -9,6 +9,11 @@ defaults:
   template: default.j2
   category: page
   nav: includes/nav.html
+  nav-order: 0
+  published: 2020-01-01
+  markdown-extras:
+    - break-on-newline
+    - fenced-code-blocks
 
 lists:
   nav:
