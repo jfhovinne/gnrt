@@ -1,8 +1,8 @@
 # Dependencies
-jinja2
-markdown2
-python-frontmatter
-pyyaml
+jinja2 == 3.*
+markdown2 == 2.*
+python-frontmatter == 1.*
+pyyaml == 6.*
 
 # Testing
 flake8
