@@ -19,6 +19,7 @@ tasks:
     cmds:
       - flake8 --max-line-length=127 gnrt
       - pip freeze | safety check --stdin
+      - bandit -r gnrt -c .bandit.yml
 
   test:
     desc: Execute tests
