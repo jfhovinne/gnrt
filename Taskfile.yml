@@ -25,3 +25,9 @@ tasks:
     desc: Execute tests
     cmds:
       - python -m pytest
+
+  test-matrix:
+    desc: Execute test matrix
+    cmds:
+      - pip install dagger-io
+      - python test-matrix.py
