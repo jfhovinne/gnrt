@@ -10,8 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Task
+        run: |
+          sh -c "$(curl -ssL https://taskfile.dev/install.sh)" -- -d
+          echo "./bin" >> $GITHUB_PATH
+
       - name: Test matrix
         run: |
           python3 -m venv /tmp/venv/
           source /tmp/venv/bin/activate
-          ./vendor/bin/task test-matrix
+          task test-matrix
