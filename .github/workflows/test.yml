@@ -10,13 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Task
+      - name: Get podmatrix
         run: |
-          sh -c "$(curl -ssL https://taskfile.dev/install.sh)" -- -d
-          echo "./bin" >> $GITHUB_PATH
+          sudo wget https://raw.githubusercontent.com/jfhovinne/podmatrix/master/podmatrix -O /usr/local/bin/podmatrix
+          sudo chmod +x /usr/local/bin/podmatrix
 
       - name: Test matrix
         run: |
-          python3 -m venv /tmp/venv/
-          source /tmp/venv/bin/activate
-          task test-matrix
+          podmatrix exec ./test.sh --source . --target /tmp/src --image python \
+          --tag 3.7 --tag 3.8 --tag 3.9 --tag 3.10 --tag 3.11
